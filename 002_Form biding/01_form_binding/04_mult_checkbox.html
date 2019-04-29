@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Привязка к нескольким checkbox</h1>
+    
+    <div id="app">
+
+        <form>
+
+            <div>
+                <label>
+                    <input type="checkbox" value="Avto" v-model="searchMashines">
+                    Avtomobile
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <input type="checkbox" value="Самолет" v-model="searchMashines">
+                    Самолет
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <input type="checkbox" value="Корабль" v-model="searchMashines">
+                    Корабль
+                </label>
+            </div>
+
+            <small>Выбрано: {{ searchMashines }}</small>
+            
+        </form>
+        
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    // В массиве будут записаны все значения с элементов checkbox
+                    searchMashines: []
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        form > div {
+            padding-left: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

@@ -9,9 +9,13 @@
 </head>
 <body>
 
-    <h1></h1>
+    <h1>Привязка к элементу input</h1>
     
     <div id="app">
+
+        <input type="text" v-model="search" placeholder="Поиск...">
+        <br />
+        <div>Что мы ищем: {{ search }}</div>
         
     </div>
     
@@ -21,7 +25,9 @@
 
             var sample = new Vue({
                 el: "#app",
-                
+                data: {
+                    search: ""
+                }
             })
 
         };

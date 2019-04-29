@@ -9,10 +9,13 @@
 </head>
 <body>
 
-    <h1></h1>
+    <h1>Привязка к textarea</h1>
     
     <div id="app">
         
+        <textarea v-model="search" cols="30" rows="5" placeholder="Поиск..."></textarea>
+        <br>
+        <div>Что мы ищем: {{ search }}</div>
     </div>
     
    <script>
@@ -21,7 +24,9 @@
 
             var sample = new Vue({
                 el: "#app",
-                
+                data: {
+                    search: ""
+                }
             })
 
         };

@@ -9,9 +9,15 @@
 </head>
 <body>
 
-    <h1></h1>
+    <h1>Привязка к checkbox</h1>
     
     <div id="app">
+
+        <label>
+            <input type="checkbox" v-model="isEnabled">
+        </label>
+
+        <p>Элемент выбран: {{ isEnabled }}</p>
         
     </div>
     
@@ -21,7 +27,9 @@
 
             var sample = new Vue({
                 el: "#app",
-                
+                data: {
+                    isEnabled: false
+                }
             })
 
         };

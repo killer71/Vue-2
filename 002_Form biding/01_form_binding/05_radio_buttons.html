@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Привязка к radio buttons</h1>
+    
+    <div id="app">
+
+        <label>
+            <input type="radio" value="Футбол" v-model="searchElem">
+            Футбол
+        </label>
+        <br>
+
+        <label>
+            <input type="radio" value="Хоккей" v-model="searchElem">
+            Хоккей
+        </label>
+        <br>
+
+        <label>
+            <input type="radio" value="Курсы" v-model="searchElem">
+            Курсы
+        </label>
+        <br>
+
+        <p>Сегодня с друзьями мы пойдем на <span>{{ searchElem }}</span></p>
+
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    searchElem: ""
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        span {
+            color: orange;
+        }
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

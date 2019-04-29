@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Привязка к элементам select</h1>
+    
+    <div id="app">
+
+        <form>
+            <strong>Привязка к единичному выбору списка</strong>
+            <br>
+
+            <select v-model="selectedBeer">
+                <option value="Obolon">Оболонь</option>
+                <option value="Pilsner">Пилснер</option>
+                <option value="Hike">Хайк</option>
+                <option value="Carlsberg">Карлсберг</option>
+            </select>
+            <p>Выбранное пиво: {{ selectedBeer }}</p>
+        </form>
+
+        <strong>Привязка к множественному выбору списка</strong>
+        <br>
+
+        <select v-model="selectedCities" multiple>
+            <option value="Турция">Турция</option>
+            <option value="Франция">Франция</option>
+            <option value="Испания">Испания</option>
+            <option value="Бразилия">Бразилия</option>
+            <option value="Англия">Англия</option>
+        </select>
+        <br>
+        <small>В следущем году мы поедем в: {{ selectedCities }}</small>
+        
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    selectedBeer: "",
+                    selectedCities: []
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

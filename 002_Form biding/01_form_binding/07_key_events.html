@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Пример использования привязки для элементов input</h1>
+    
+    <div id="app">
+
+        <form>
+            <!-- Тип Color -->
+            <label for="colorInputField">Цвет</label>
+            <input id="colorInputField" type="color" class="form-control" v-model="colorInput" />
+            <small class="text-muted">{{ colorInput }}</small>
+
+
+            <!-- Тип Date -->
+            <label for="dateInputField">Дата</label>
+                <input id="dateInputField" type="date" v-model="dateInput" />
+                <small>{{ dateInput }}</small>
+
+            <!-- Тип datetime-local -->
+            <label for="dateTimeLocalInputField">Текущая дата и время</label>
+                <input id="dateTimeLocalInputField" type="datetime-local" v-model="dateTimeLocalInput" />
+                <small>{{ dateTimeLocalInput }}</small>
+
+            <!-- Тип Email -->
+            <label for="emailInputField">email</label>
+                <input id="emailInputField" type="email" v-model="emailInput" />
+                <small>{{ emailInput }}</small>
+
+            <!-- Тип Month -->
+            <label for="monthInputField">Месяц</label>
+                <input id="monthInputField" type="month" v-model="monthInput" />
+                <small>{{ monthInput }}</small>
+
+            <!--Тип Number-->
+            <label for="numberInputField">Число</label>
+                <input id="numberInputField" type="number" v-model="numberInput" />
+                <small>{{ numberInput }}</small>
+
+
+            <!-- Тип Password-->
+            <label for="passwordInputField">Пароль</label>
+                <input id="passwordInputField" type="password" v-model="passwordInput" />
+                <small>{{ passwordInput }}</small>
+
+            <!-- Тип Range -->
+            <label for="rangeInputField">Уровень</label>
+                <input id="rangeInputField" type="range" v-model="rangeInput" />
+                <small>{{ rangeInput }}</small>
+
+            <!-- Тип Search -->
+            <label for="searchInputField">Поиск</label>
+                <input id="searchInputField" type="search" v-model="searchInput" />
+                <small>{{ searchInput }}</small>
+
+            <!--Тип Tel-->
+            <label for="telInputField">Телефон</label>
+                <input id="telInputField" type="tel" v-model="telInput" />
+                <small>{{ telInput }}</small>
+
+            <!--Тип Text -->
+            <label for="textInputField">Текст</label>
+                <input id="textInputField" type="text" v-model="textInput" />
+                <small>{{ textInput }}</small>
+
+            <!--Тип Time-->
+            <label for="timeInputField">Время</label>
+                <input id="timeInputField" type="time" v-model="timeInput" />
+                <small>{{ timeInput }}</small>
+
+            <!--Тип URL-->
+            <label for="urlInputField">Ссылка</label>
+                <input id="urlInputField" type="url" v-model="urlInput" />
+                <small>{{ urlInput }}</small>
+
+            <!--Тип Week  -->
+            <label for="weekInputField">Неделя</label>
+                <input id="weekInputField" type="week" v-model="weekInput" />
+                <small>{{ weekInput }}</small>
+        </form>
+        
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    colorInput: "(nothing)",
+                    dataInput: "(underfined)",
+                    dataTimeLocalInput: "",
+                    emailInput: "(underfined)",
+                    monthInput: "(underfined)",
+                    numberInput: "(underfined)",
+                    passwordInput: "(underfined)",
+                    rangeInput: 0,
+                    telInput: "(underfined)",
+                    textInput: "(underfined)",
+                    timeInput: "(underfined)",
+                    searchInput: "(underfined)",
+                    urlInput: "(underfined)",
+                    weekInput: "(underfined)"
+
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

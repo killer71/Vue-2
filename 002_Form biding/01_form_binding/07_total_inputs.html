@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Пример использования привязки для элементов input</h1>
+    
+    <div id="app">
+
+        <form>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <!-- Тип Color -->
+                    <div class="form-group row">
+                        <label for="colorInputField" class="col-sm-3 col-form-label">Цвет</label>
+                        <div class="col-sm-9">
+                            <input id="colorInputField" type="color" class="form-control" v-model="colorInput" />
+                            <small class="text-muted">{{ colorInput }}</small>
+                        </div>
+                    </div>
+
+                    <!-- Тип Date -->
+                    <div class="form-group row">
+                        <label for="dateInputField" class="col-sm-3 col-form-label">Дата</label>
+                        <div class="col-sm-9">
+                            <input id="dateInputField" type="date" class="form-control" v-model="dateInput" />
+                            <small class="text-muted">{{ dateInput }}</small>
+                        </div>
+                    </div>
+
+                    <!-- Тип datetime-local -->
+                    <div class="form-group row">
+                        <label for="dateTimeLocalInputField" class="col-sm-3 col-form-label">Текущая дата и время</label>
+                        <div class="col-sm-9">
+                            <input id="dateTimeLocalInputField" type="datetime-local" class="form-control" v-model="dateTimeLocalInput" />
+                            <small class="text-muted">{{ dateTimeLocalInput }}</small>
+                        </div>
+                    </div>
+
+                    <!-- Тип Email -->
+                    <div class="form-group row">
+                        <label for="emailInputField" class="col-sm-3 col-form-label">email</label>
+                        <div class="col-sm-9">
+                            <input id="emailInputField" type="email" class="form-control" v-model="emailInput" />
+                            <small class="text-muted">{{ emailInput }}</small>
+                        </div>
+                    </div>
+
+                    <!-- Тип Month -->
+                    <div class="form-group row">
+                        <label for="monthInputField" class="col-sm-3 col-form-label">Месяц</label>
+                        <div class="col-sm-9">
+                            <input id="monthInputField" type="month" class="form-control" v-model="monthInput" />
+                            <small class="text-muted">{{ monthInput }}</small>
+                        </div>
+                    </div>
+
+                    <!--Тип Number-->
+                    <div class="form-group row">
+                        <label for="numberInputField" class="col-sm-3 col-form-label">Число</label>
+                        <div class="col-sm-9">
+                            <input id="numberInputField" type="number" class="form-control" v-model="numberInput" />
+                            <small class="text-muted">{{ numberInput }}</small>
+                        </div>
+                    </div>
+
+                    <!-- Тип Password-->
+                    <div class="form-group row">
+                        <label for="passwordInputField" class="col-sm-3 col-form-label">Пароль</label>
+                        <div class="col-sm-9">
+                            <input id="passwordInputField" type="password" class="form-control" v-model="passwordInput" />
+                            <small class="text-muted">{{ passwordInput }}</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-4 offset-lg-1">
+                    <!-- Тип Range -->
+                    <div class="form-group row">
+                        <label for="rangeInputField" class="col-sm-3 col-form-label">Уровень</label>
+                        <div class="col-sm-9">
+                            <input id="rangeInputField" type="range" class="form-control" v-model="rangeInput" />
+                            <small class="text-muted">{{ rangeInput }}</small>
+                        </div>
+                    </div>
+
+                    <!-- Тип Search -->
+                    <div class="form-group row">
+                        <label for="searchInputField" class="col-sm-3 col-form-label">Поиск</label>
+                        <div class="col-sm-9">
+                            <input id="searchInputField" type="search" class="form-control" v-model="searchInput" />
+                            <small class="text-muted">{{ searchInput }}</small>
+                        </div>
+                    </div>
+
+                    <!--Тип Tel-->
+                    <div class="form-group row">
+                        <label for="telInputField" class="col-sm-3 col-form-label">Телефон</label>
+                        <div class="col-sm-9">
+                            <input id="telInputField" type="tel" class="form-control" v-model="telInput" />
+                            <small class="text-muted">{{ telInput }}</small>
+                        </div>
+                    </div>
+
+                    <!--Тип Text -->
+                    <div class="form-group row">
+                        <label for="textInputField" class="col-sm-3 col-form-label">Текст</label>
+                        <div class="col-sm-9">
+                            <input id="textInputField" type="text" class="form-control" v-model="textInput" />
+                            <small class="text-muted">{{ textInput }}</small>
+                        </div>
+                    </div>
+
+                    <!--Тип Time-->
+                    <div class="form-group row">
+                        <label for="timeInputField" class="col-sm-3 col-form-label">Время</label>
+                        <div class="col-sm-9">
+                            <input id="timeInputField" type="time" class="form-control" v-model="timeInput" />
+                            <small class="text-muted">{{ timeInput }}</small>
+                        </div>
+                    </div>
+
+                    <!--Тип URL-->
+                    <div class="form-group row">
+                        <label for="urlInputField" class="col-sm-3 col-form-label">Ссылка</label>
+                        <div class="col-sm-9">
+                            <input id="urlInputField" type="url" class="form-control" v-model="urlInput" />
+                            <small class="text-muted">{{ urlInput }}</small>
+                        </div>
+                    </div>
+
+                    <!--Тип Week  -->
+                    <div class="form-group row">
+                        <label for="weekInputField" class="col-sm-3 col-form-label">Неделя</label>
+                        <div class="col-sm-9">
+                            <input id="weekInputField" type="week" class="form-control" v-model="weekInput" />
+                            <small class="text-muted">{{ weekInput }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    colorInput: "(nothing)",
+                    dataInput: "(underfined)",
+                    dataTimeLocalInput: "",
+                    emailInput: "(underfined)",
+                    monthInput: "(underfined)",
+                    numberInput: "(underfined)",
+                    passwordInput: "(underfined)",
+                    rangeInput: 0,
+                    telInput: "(underfined)",
+                    textInput: "(underfined)",
+                    timeInput: "(underfined)",
+                    searchInput: "(underfined)",
+                    urlInput: "(underfined)",
+                    weekInput: "(underfined)"
+
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>
