@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1></h1>
+    
+    <div id="app">
+
+        <label for="searchInput">Поиск (используя обычную двунаправленную привязку)</label>
+        <br>
+        <input v-model="query1" placeholder="Ищем..." id="searchInput" type="search">
+        <p>{{ query1 }}</p>
+
+        <label for="searchInput2">Поиск (используя ленивую привязку)</label>
+        <br>
+        <input v-model.lazy="query2" placeholder="Ищем..." id="searchInput2" type="search">
+        <p>{{ query2 }}</p>
+
+        <label for="searchInput3">Поиск (используя ленивую привязку с модификатором trim)</label>
+        <br>
+        <input v-model.lazy.trim="query3" placeholder="Ищем..." id="searchInput3" type="search">
+        <p>{{ query3 }}</p>
+        
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    query1: "",
+                    query2: "",
+                    query3: ""
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

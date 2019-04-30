@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Обработчик событий с параметром</h1>
+    
+    <div id="app">
+
+        <form>
+            <input v-model="search" type="search" placeholder="Введите сюда любой запрос">
+            <!--onSearch('user', $event) -функция, срабатывающая при нажатии на кнопку. Принимает параметры:
+            'user' - параметр обращения. Может принимать значение- число, булевое, строка, объект.
+            $event - параметр события. Зарезервированный в библиотеке Vue.js. Этот параметр дает доступ
+            к тому событию DOM части, которое было запущено.   -->
+            <button v-on:click="onSearch('user', $event)" type="button">Поиск</button>
+            <!-- <button @click="onSearch(new Date(), $event)" type="button" class="btn btn-primary">Поиск</button> -->
+        </form>
+        
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    search: ""
+                },
+                methods: {
+                    onSearch: function(v, e) {
+                        let mess = 'Обращение: ' + v + '\n' +
+                        'Запрос: ' + this.search + '\n' +
+                        'Кнопка: ' + e.target.innerText;
+                        alert(mess);
+                    }
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

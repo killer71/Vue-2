@@ -4,38 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Добавление экземпляра Vue</title>
+    <title>Vue</title>
     <script src="../../libs/vue/vue.js"></script>
 </head>
 <body>
 
-    <h1>Пример показывающий использование обьекта data</h1>
+    <h1>Модификатор данных 'trim'</h1>
     
     <div id="app">
 
-        <h2>Ссылка на документацию - {{path}}</h2>
-        <!-- Вывод на экран обьекта data -->
-        <h2>Ссылка на документацию - {{$data}}</h2>
-
-        <h2></h2>
-       
+        <form>
+            <!-- Данный модификатор убирает все пробелы, переносы, табуляции, оставляя всего один пробел -->
+            
+            <label for="searchInput">Поиск:</label><br />
+            <textarea v-model.trim="Search" id="searchInput" placeholder="Ищем..." type="search"></textarea>
+            <p>{{ Search }}</p>
+        </form>
+        
     </div>
-
-    <script>
-
+    
+   <script>
+   
         window.onload = function() {
 
             var sample = new Vue({
                 el: "#app",
                 data: {
-                    path: 'vuejs.org',
-                    isOnline: true
+                    Search: ""
                 }
             })
 
         };
 
-    </script>
+   </script>
 
     <style scoped>
 

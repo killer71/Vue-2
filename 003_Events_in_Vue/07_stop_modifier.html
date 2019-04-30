@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Модификатор остановки распространения - stop</h1>
+    
+    <div id="app">
+
+            <form>
+
+                <div v-on:click="grandparentClick">
+                    <!--Применение модификатора stop к родительскому элементу-->
+                    <!--<div class="input-group" v-on:click.stop="parentClick">-->
+                            <div v-on:click="parentClick">
+                            <input type="text" v-model="search" />
+                            <!--Аналог метода stopPropagation в JS-->
+                            <button v-on:click.stop="executeSearch" type="button">Search</button>
+                        </div>
+                    </div>
+
+                <br />
+
+                <label for="logTextarea">Журнал событий</label>
+                <br>
+                <textarea v-model="history" cols="80" rows="10"></textarea>
+            </form>
+        
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    search: '',
+                    history: ''
+                },
+                methods: {
+                    executeSearch: function () {
+                        this.history += 'Нажатие кнопки "Поиск". Запрос "' + this.search + '".\n';
+                    },
+                    parentClick: function () {
+                        this.history += 'Нажатие родительского элемента кнопки "Поиск" .\n';
+                    },
+                    grandparentClick: function () {
+                        this.history += 'Нажатие прародительского элемента кнопки "Поиск".\n';
+                    }
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>
