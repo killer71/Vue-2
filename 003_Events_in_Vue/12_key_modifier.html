@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue</title>
-    <script src="../../libs/vue/vue.js"></script>
+    <script src="../libs/vue/vue.js"></script>
 </head>
 <body>
 
-    <h1></h1>
+    <h1>События нажатия клавиши</h1>
     
     <div id="app">
+
+        <form v-on:submit.prevent>
+
+            <input type="search" v-model="search" v-on:keyup="evaluateKey" v-on:keyup.enter="executeSearch" autofocus />
+            <button type="button" v-on:click="executeSearch">Поиск</button>
+            <br />
+            <label for="logTextarea">Журнал событий (<a href="#" v-on:click="clearHistory">Очистить</a>)</label> <br />
+            <textarea v-model="history" cols="80" rows="15"></textarea>
+        </form>
         
     </div>
     
@@ -21,7 +30,26 @@
 
             var sample = new Vue({
                 el: "#app",
-                
+                data: {
+                    search: '',
+                    history: ''
+                },
+                methods: {
+                    // Название кнопки можно узнать через свойство key. Ключевой номер - keyCode, аналогично JS.
+                    evaluateKey: function (e) {
+                        var code = e.keyCode;
+                    
+                        this.history += 'Нажата кнопка: "' + e.key + '" (' + code + ')\n';
+                    },
+                    executeSearch: function (e) {
+                        if (this.search) {
+                            this.history += 'Кнопка поиска была нажата. Запрос "' + this.search + '".\n';
+                        }
+                    },
+                    clearHistory: function () {
+                        this.history = '';
+                    }
+                }
             })
 
         };

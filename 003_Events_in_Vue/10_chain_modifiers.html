@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue</title>
-    <script src="../../libs/vue/vue.js"></script>
+    <script src="../libs/vue/vue.js"></script>
 </head>
 <body>
 
-    <h1></h1>
+    <h1>Использование нескольких модификаторов одновременно</h1>
     
     <div id="app">
-        
+        <form>
+            <div v-on:click="grandparentClick">
+                <div v-on:click.stop.self="parentClick">
+                    <button v-on:click="executeSearch" type="button">Поиск</button>
+                </div>
+            </div>
+            <br />
+            <label for="logTextarea">Журнал событий (<a href="#" v-on:click="clearHistory">Очистить</a>)</label><br>
+            <textarea v-model="history" cols="80" rows="10"></textarea>
+        </form>
     </div>
     
    <script>
@@ -21,7 +30,23 @@
 
             var sample = new Vue({
                 el: "#app",
-                
+                data: {
+                    history: ''
+                },
+                methods: {
+                    executeSearch: function () {
+                        this.history += 'Нажатие кнопки "Поиск".\n';
+                    },
+                    parentClick: function () {
+                        this.history += 'Нажатие родительского элемента кнопки "Поиск" .\n';
+                    },
+                    grandparentClick: function () {
+                        this.history += 'Нажатие прародительского элемента кнопки "Поиск".\n';
+                    },
+                    clearHistory: function () {
+                        this.history = '';
+                    }
+                }
             })
 
         };

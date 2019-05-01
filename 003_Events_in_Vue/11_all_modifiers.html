@@ -5,14 +5,81 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue</title>
-    <script src="../../libs/vue/vue.js"></script>
+    <script src="../libs/vue/vue.js"></script>
 </head>
 <body>
 
-    <h1></h1>
+    <h1>Набор различных модификаторов событий</h1>
     
     <div id="app">
-        
+
+        <form>>
+            <div class="block" v-on:click.capture="captureGrandparentClick">
+                <strong>Перехват</strong>
+                <div v-on:click.capture="captureParentClick">
+                    <button v-on:click.capture="captureExecuteSearch" type="button">Поиск</button>
+                </div>
+            </div>
+
+            <div class="block" v-on:click="preventGrandparentClick">
+                <strong>Prevent</strong>
+                <div v-on:click="preventParentClick">
+                    <button v-on:click.prevent="preventExecuteSearch" type="submit">Поиск</button>
+                </div>
+            </div>
+
+            <div class="block" v-on:click.stop="stopGrandparentClick">
+                <strong>Stop</strong>
+                <div v-on:click.stop="stopParentClick">
+                    <button v-on:click.stop="stopExecuteSearch" type="button">Поиск</button>
+                </div>
+            </div>
+
+            <div class="block" v-on:click.self="selfGrandparentClick">
+                <strong>Self</strong>
+                <div v-on:click="selfParentClick">
+                    <button v-on:click.self="selfExecuteSearch" type="button">Поиск</button>
+                </div>
+            </div>
+
+            <div class="block" v-on:click.once="onceGrandparentClick">
+                <strong>Once</strong>
+                <div v-on:click.once="onceParentClick">
+                    <button v-on:click.once="onceExecuteSearch" type="button">Search</button>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="top">
+                <div class="block">
+                    <label for="logTextarea">Журнал событий (<a href="#" v-on:click="clearCaptureHistory">Очистить</a>)</label><br />
+                    <textarea v-model="captureHistory" rows="8"></textarea><br />
+                </div>
+    
+                <div class="block">
+                    <label for="logTextarea">Журнал событий  (<a href="#" v-on:click="clearPreventHistory">Очистить</a>)</label><br />
+                    <textarea v-model="preventHistory" rows="8"></textarea><br />
+                </div>
+    
+                <div class="block">
+                    <label for="logTextarea">Журнал событий  (<a href="#" v-on:click="clearStopHistory">Очистить</a>)</label><br />
+                    <textarea v-model="stopHistory" rows="8"></textarea><br />
+                </div>
+    
+                <div class="block">
+                    <label for="logTextarea">Журнал событий  <a href="#" v-on:click="clearSelfHistory">Очистить</a></label><br />
+                    <textarea v-model="selfHistory" rows="8"></textarea><br />
+                </div>
+    
+                <div class="block">
+                    <label for="logTextarea">Журнал событий  <a href="#" v-on:click="clearOnceHistory">Очистить</a></label><br />
+                    <textarea v-model="onceHistory" rows="8"></textarea><br />
+                </div>
+            </div>
+
+        </form>
+    
     </div>
     
    <script>
@@ -21,7 +88,75 @@
 
             var sample = new Vue({
                 el: "#app",
-                
+                data: {
+                    preventHistory: '',
+                    captureHistory: '',
+                    stopHistory: '',
+                    selfHistory: '',
+                    onceHistory: ''
+                },
+                methods: {
+                    preventExecuteSearch: function () {
+                        this.preventHistory += 'Нажатие кнопки "Поиск".\n';
+                    },
+                    preventParentClick: function () {
+                        this.preventHistory += 'Нажатие родительского элемента кнопки "Поиск" .\n';
+                    },
+                    preventGrandparentClick: function () {
+                        this.preventHistory += 'Нажатие прародительского элемента кнопки "Поиск".\n';
+                    },
+                    clearPreventHistory: function () {
+                        this.preventHistory = '';
+                    },
+                    captureExecuteSearch: function () {
+                        this.captureHistory += 'Нажатие кнопки "Поиск".\n';
+                    },
+                    captureParentClick: function () {
+                        this.captureHistory += 'Нажатие родительского элемента кнопки "Поиск" .\n';
+                    },
+                    captureGrandparentClick: function () {
+                        this.captureHistory += 'Нажатие прародительского элемента кнопки "Поиск".\n';
+                    },
+                    clearCaptureHistory: function () {
+                        this.captureHistory = '';
+                    },
+                    stopExecuteSearch: function () {
+                        this.stopHistory += 'Нажатие кнопки "Поиск".\n';
+                    },
+                    stopParentClick: function () {
+                        this.stopHistory += 'Нажатие родительского элемента кнопки "Поиск" .\n';
+                    },
+                    stopGrandparentClick: function () {
+                        this.stopHistory += 'Нажатие прародительского элемента кнопки "Поиск".\n';
+                    },
+                    clearStopHistory: function () {
+                        this.stopHistory = '';
+                    },
+                    selfExecuteSearch: function () {
+                        this.selfHistory += 'Нажатие кнопки "Поиск".\n';
+                    },
+                    selfParentClick: function () {
+                        this.selfHistory += 'Нажатие родительского элемента кнопки "Поиск" .\n';
+                    },
+                    selfGrandparentClick: function () {
+                        this.selfHistory += 'Нажатие прародительского элемента кнопки "Поиск".\n';
+                    },
+                    clearSelfHistory: function () {
+                        this.selfHistory = '';
+                    },
+                    onceExecuteSearch: function () {
+                        this.onceHistory += 'Нажатие кнопки "Поиск".\n';
+                    },
+                    onceParentClick: function () {
+                        this.onceHistory += 'Нажатие родительского элемента кнопки "Поиск" .\n';
+                    },
+                    onceGrandparentClick: function () {
+                        this.onceHistory += 'Нажатие прародительского элемента кнопки "Поиск".\n';
+                    },
+                    clearOnceHistory: function () {
+                        this.onceHistory = '';
+                    }
+                }
             })
 
         };
@@ -33,6 +168,19 @@
         h1 {
             text-align: center;
             color: green;
+        }
+
+        .block {
+            display: inline-block;
+            margin-right: 50px;
+        }
+
+        .top {
+            margin-top: 100px;
+        }
+
+        strong {
+            display: block;
         }
 
     </style>

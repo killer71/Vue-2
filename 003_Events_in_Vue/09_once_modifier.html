@@ -5,13 +5,24 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue</title>
-    <script src="../../libs/vue/vue.js"></script>
+    <script src="../libs/vue/vue.js"></script>
 </head>
 <body>
 
-    <h1></h1>
+    <h1>Модификатор - once</h1>
     
     <div id="app">
+
+        <div v-on:click="grandparentClick">
+            <div v-on:click="parentClick">
+                <input type="search" v-model="search" v-bind:disabled="isRunning" autofocus>
+                <button type="button" v-on:click.once="executeSearch" v-bind:disabled="isRunning">Поиск</button>
+            </div>
+            <br>
+            <label for="logTextarea">Журнал событий</label>
+            <br>
+            <textarea v-model="history" cols="30" rows="10"></textarea>
+        </div>
         
     </div>
     
@@ -21,7 +32,23 @@
 
             var sample = new Vue({
                 el: "#app",
-                
+                data: {
+                    search: "",
+                    isRunning: false,
+                    history: ""
+                },
+                methods: {
+                    executeSearch: function() {
+                        this.isRunning = true;
+                        this.history += "Нажатие кнопки 'Поиск'. Запрос на поиск: " + this.search + "\n";
+                    },
+                    parentClick: function() {
+                        this.history += "Нажатие родительского элемента кнопки 'Поиск' .\n";
+                    },
+                    grandparentClick: function() {
+                        this.history += "Нажатие прарадительского элемента кнопки 'Поиск' .\n ";
+                    }
+                }
             })
 
         };

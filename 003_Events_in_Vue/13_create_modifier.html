@@ -5,25 +5,48 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue</title>
-    <script src="../../libs/vue/vue.js"></script>
+    <script src="../libs/vue/vue.js"></script>
 </head>
 <body>
 
-    <h1></h1>
+    <h1>Создание собственных модификаторов</h1>
     
-    <div id="app">
+    <div id="app" v-on:keydown.f1="showHelp">
+
+        <form>
+            <!--  При получении фокуса в теге <code>textarea</code> - при нажатии кнопки f1 будет выполнена функция -->
+            <br />
+            <label for="logTextarea">Журнал событий (<a href="#" v-on:click="clearHistory">Очистить</a>)</label>
+            <br />
+            <textarea v-model="history" cols="80" rows="10"></textarea>
+        </form>
         
     </div>
     
    <script>
    
         window.onload = function() {
-
+            //Создание собственного key модификатора для кнопки F1.
+            //В экземпляре объекта Vue мы настраиваем управление свойством
+            //keyCodes с помощью метода config
+            Vue.config.keyCodes = {
+                f1: 112
+            };
             var sample = new Vue({
                 el: "#app",
-                
+                data: {
+                    history: ''
+                },
+                methods: {
+                    showHelp: function (e) {
+                        e.preventDefault();
+                        this.history += 'Вывод новой строки помощи на экран.\n';
+                    },
+                    clearHistory: function () {
+                        this.history = '';
+                    }
+                }
             })
-
         };
 
    </script>
