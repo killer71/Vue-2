@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>if-else директива</h1>
+    
+    <div id="app">
+
+        <form>
+            <input type="number" style="width:inherit" min="0" v-model="stars" placeholder="Введите количество звёзд на небе"/>
+            <br>
+
+            <label>Результаты запроса:</label>
+            <p v-cloak>
+                <div v-if="stars == 0">Звезд - нет</div>
+                <div v-else-if="stars == 1">Одна звезда</div>
+                <div v-else-if="stars < 10">Выбрано {{ stars }} звезды </div>
+                <div v-else="stars > 10">Очень много...</div>
+            </p>
+        </form>
+        
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    stars: ""
+                },
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Функция sort</h1>
+    
+    <div id="app">
+            <form>
+        
+                <ul class="list-unstyled">
+                    <li><strong>Объем двигателя</strong></li>
+                    <li v-for="elem in engine">{{ elem }}</li>
+                </ul>
+    
+                <!-- При нажатии на кнопку - происходит функция сортировки массива -->
+                <button type="button" class="btn btn-secondary" v-on:click="sortClick">Сортировка</button>
+    
+                <!-- Будет отображаться, в случае если в массиве sortedEngine присутствуют элементы-->
+                <ul class="list-unstyled" v-if="sortedEngine.length > 0">
+                    <li><strong>Сортировка по умолчанию</strong></li>
+                    <!-- Отображение элементов массива с помощью функции sort  -->
+                    <li v-for="elem in sortedEngine">{{ elem }}</li>
+                </ul>
+    
+                <!-- Будет отображаться, в случае если в массиве sortedEngine присутствуют элементы-->
+                <!-- При нажатии на кнопку - запускается собственная функция сортировки элементов массива -->
+                <button type="button" class="btn btn-secondary" v-on:click="numericallySort" v-if="sortedEngine.length > 0">Сортировка</button>
+
+                <!-- Будет отображаться, в случае если в массиве selfSort присутствуют элементы-->
+                <ul class="list-unstyled" v-if="selfSort.length > 0">
+                    <li><strong>Сортировка по числам</strong></li>
+                    <li v-for="elem in selfSort">{{ elem }}</li>
+                </ul>
+                 
+            </form>
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    engine: [
+                       2.5, 11.3, 0.9, 3.6, 21.9, 11.6, 11.0, 1.3
+                    ],
+                    sortedEngine: [],
+                    selfSort: []
+                },
+                methods: {
+                    sortClick: function () {
+                        this.sortedEngine = this.engine.slice();
+                        this.sortedEngine.sort();
+                    },
+                    numericallySort: function () {
+                        this.selfSort = this.sortedEngine.slice();
+                        this.selfSort.sort(function (v1, v2) {
+                            return v1 - v2;
+                        });
+                    }
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

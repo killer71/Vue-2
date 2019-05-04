@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>v-for директива</h1>
+    
+    <div id="app">
+        <form>
+            <nav>
+                <!-- Перебираем объекты - элементы массива -->
+                <div v-for="(link, index) in links">
+                    <!-- Использование семантической привязки -->
+                    <strong>{{index+1}} Page</strong>
+                    <!-- Перебираем элементы массива, входящего в состав объекта -->
+                    <div v-for="section in link.sections">{{link.number}}-{{ section }}, {{link.url}}</div>
+                    <br />
+                </div>
+            </nav>
+        </form>
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    links: [
+                        { number: 1, url: 'page=1', sections: ['A', 'B', 'C'] },
+                        { number: 2, url: 'page=2', sections: ['Y', 'Z', 'X'] }
+                    ]
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

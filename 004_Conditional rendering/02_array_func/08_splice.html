@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Splice метод</h1>
+    
+    <div id="app">
+
+        <form>
+            <ul>
+                <li><strong>Все авто: {{ auto.length }}</strong></li>
+                <li v-for="i in auto">{{ i }}</li>
+            </ul>
+            <br />
+            <ul>
+                <li><button type="button" v-on:click="spliceClick">Вырезать</button></li>
+            </ul>
+        </form>
+        
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    auto: [
+                        'Toyota',
+                        'Honda',
+                        'Volvo',
+                        'Siat',
+                        'BMV'
+                    ],
+                    newAuto: '',
+                },
+                methods: {
+                    spliceClick: function () {
+                        // Метод позволяет удалять, добавлять элементы в массив
+                        // Первый параметр - начало откуда начинать действие. Если присутствует только первый параметр - вырезка происходит начиная с данного индекса, и до конца массива
+                        // Второй - количество желаемых вырезанных элементов. Если параметр равен 0, это означает что мы не хотим удалять элементы.
+                        // Третий, в случае наличия - на что будем заменять
+                        var removed = this.auto.splice(1, 2);
+                        console.log(removed);
+                    }
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

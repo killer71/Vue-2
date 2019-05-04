@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Пример показывающий применение директивы <code>v-cloak</code>.</h1>
+    
+    <div id="app">
+        <form>
+            <!-- Директива  v-cloak прячет элемент до тех пор, пока объект Vue пока не произошла операция выполнения представления-->
+
+            <label for="logTextarea">Журнал событий (без директивы <code>v-cloak</code>)</label>
+            <div class="block">
+                <div>{{ history }}</div>
+            </div>
+           
+            <label for="logTextarea">Журнал событий (с директивой <code>v-cloak</code>)</label>
+            <div class="block">
+                <div v-cloak>{{ history }}</div>
+            </div>
+       
+        </form>
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+            // Намеренное задержка загрузки экземпляра Vue
+            setTimeout(initializeVue, 3000);
+            function initializeVue() {
+                var sample = new Vue({
+                    el: "#app",
+                    data: {
+                        history: ""
+                    },
+                     //Свойство объекта Vue. Позволяет добавлять код на любом этапе жизненного цикла
+                    //Данное свойство используется для для выполнения кода, после завершения загрузки
+                    created: function() {
+                        this.history = "Загрузка экземпляра Vue завершена!"
+                    }
+                })
+            }
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        [v-cloak] {
+            display: none;
+        }
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+        .block {
+            border: 1px solid #000;
+            padding: 10px;
+            height: 100px;
+        }
+
+    </style>
+
+</body>
+</html>

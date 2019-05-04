@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Vue.set функция</h1>
+    
+    <div id="app">
+
+        <form>
+            <ul>
+                <li>
+                    <strong>Автомобили: {{ auto.length }}</strong>
+                </li>
+                <li v-for="i in auto">{{ i }}</li>
+            </ul>
+            
+            <ul>
+                <li>
+                    <button type="button" v-on:click="updateClick">Обновить</button>
+                </li>
+            </ul>
+        </form>
+
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    auto: [
+                        'Toyota',
+                        'Honda',
+                        'Volvo',
+                        'Siat',
+                        'BMV'
+                    ],
+                    newAuto: '',
+                },
+                methods: {
+                    updateClick: function () {
+                        // На экземпляре объекта Vue вызываем метод SET для установки значений
+                        // Vue.set("какой объект(массив) нужно выбрать", "Какой элемент необходимо установить", "Значение элемента"
+                        Vue.set(this.auto, 2, 'Volvo VX35');
+                    }
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Функция reverse</h1>
+    
+    <div id="app">
+        <form>
+            <ul>
+                <li><strong>Автомобили</strong></li>
+                <li v-for="(value, index) in cars">{{index +1}}: {{ value }}</li>
+            </ul>
+            <button type="button" v-on:click="reverseClick">Функция реверса</button>
+        </form>
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    cars: [
+                       'Toyota',
+                        'Honda',
+                        'Volvo',
+                        'Siat',
+                        'BMV'
+                    ]
+                },
+                methods: {
+                    reverseClick: function () {
+                        this.cars.reverse();
+                    }
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Функция pop</h1>
+    
+    <div id="app">
+
+        <form>
+            <ul>
+                <li><strong>Все авто: {{ auto.length }}</strong></li>
+                <li v-for="i in auto">{{ i }}</li>
+            </ul>
+
+            <input type="text" v-model="newAuto" placeholder="Введите новую модель автомобиля" />
+            <ul class="list">
+                <br />
+                <li>
+                    <button type="button" v-on:click="pushClick">Добавить</button>
+                </li>
+                <li>
+                    <button type="button" v-on:click="popClick">Удалить последний автомобиль</button>
+                </li>
+        </form>
+
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    auto: [
+                        'Toyota',
+                        'Honda',
+                        'Volvo',
+                        'Siat',
+                        'BMV'
+                    ],
+                    newAuto: '',
+                },
+                methods: {
+                    pushClick: function (e) {
+                        if (this.newAuto == '') {
+                            e.preventDefault();
+                            alert('Введите значение')
+                        }
+                        else {
+                            this.count = this.auto.push(this.newAuto);
+                            this.newAuto = '';
+                        }
+                    },
+                    popClick: function () {
+                        //Возвращает последний элемент
+                        var popped = this.auto.pop();
+                        console.log(popped)
+                    }
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .list > li {
+            display: inline-block;
+        }
+
+        ul>li>button {
+            display: inline-block;
+            width: 200px;
+            height: 50px;
+            vertical-align: top;
+        }
+
+        input {
+            margin-top: 30px;
+            width: 300px;
+        }
+
+    </style>
+
+</body>
+</html>

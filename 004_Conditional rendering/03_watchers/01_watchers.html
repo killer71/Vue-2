@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Watch свойство</h1>
+    
+    <div id="app">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Модель</th>
+                    <th>Цена</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr v-for="tel in telephones">
+                    <td>{{ tel.name }}</td>
+                    <td>{{ tel.price }}$</td>
+                    <td>
+                        <button v-on:click="buy(tel)">Купить</button></td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td>Сумма:</td>
+                    <td>{{ total }}$</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    telephones: [
+                        { name: 'Nokia 3', price: 400 },
+                        { name: 'iPhone 5s', price: 500 },
+                        { name: 'iPhone 6s', price: 600 },
+                        { name: "iPhone 7s", price: 1000 },
+                        { name: 'iPhone 8', price: 1800 },
+                        { name: 'iPhone X', price: 2200 },
+                        { name: 'HUAWEY P8', price: 350 },
+                        { name: 'SAMSUNG NOTE 8', price: 750 },
+                        { name: 'SAMSUNG GALAXY S8', price: 1300 },
+                    ],
+                    basket: [],
+                    total: 0.00
+                },
+                //Свойство watch содержит в себе наблюдателей события за изменениями данных.
+                //Наблюдаемые элементы - определены через свойство data
+                watch: {
+                    //Вызов функции наблюдения за изменениями. Функция вызывается каждый раз, когда происходит изменение в массиве basket 
+                    //basket: 'updateTotal'
+                    basket: function () {
+                        this.updateTotal();
+                    }
+                },
+                //Свойство created позволяет определять поведения, которые будут запущены после создания экземпляра Vue.
+                created: function () {
+                    this.updateTotal()
+                },
+                methods: {
+                    updateTotal: function () {
+                        var length = this.basket.length;
+                        var t = 0;
+                        for (var i = 0; i < length; i++) {
+                            t += this.basket[i].price;
+                        }
+                        this.total = t;
+                    },
+                    buy: function (tel) {
+                        this.basket.push(tel);
+                    }
+                }
+
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>v-for директива</h1>
+    
+    <div id="app">
+        <form>
+            <nav>
+                <ul>
+                    <li v-for="link in links">
+                        <a href="#" v-on:click="search(link);">{{ link }}</a>
+                    </li>
+                </ul>
+            </nav>
+        </form>
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    links: [1, 2, 3, 4, 5]
+                },
+                methods: {
+                    search: function (pageNumber) {
+                        alert('Загружена ссылка № ' + pageNumber);
+                    }
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

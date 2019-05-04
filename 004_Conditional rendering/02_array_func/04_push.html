@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Функция push</h1>
+    
+    <div id="app">
+
+        <form>
+            <ul>
+                <li><strong>Все авто: {{ auto.length }}</strong></li>
+                <li v-for="i in auto">{{ i }}</li>
+            </ul>
+            <input type="text" v-model="newAuto" placeholder="Введите новую модель автомобиля" />
+            <button type="button" v-on:click="pushClick">Добавить</button>
+        </form>
+        
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    auto: [
+                        'Toyota',
+                        'Honda',
+                        'Volvo',
+                        'Siat',
+                        'BMV'
+                    ],
+                    newAuto: '',
+                },
+                methods: {
+                    pushClick: function (e) {
+                        if(this.newAuto == ''){
+                            e.preventDefault();
+                            alert('Введите значение')
+                        }
+                        else {
+                            this.count = this.auto.push(this.newAuto);
+                            this.newAuto = '';
+                        }
+                    }
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        input {
+            width: 280px;
+        }
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>
