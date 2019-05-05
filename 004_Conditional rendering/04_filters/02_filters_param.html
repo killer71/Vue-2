@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Параметры фильтров</h1>
+    
+    <div id="app">
+        <form>
+            <div v-for="car in auto">
+                <div>{{ car.model }}</div>
+                <!-- Используется фильтр преобразования -  | convert с параметром -->
+                <span>Объем двигателя: {{ car.engine | convert('--ошибка--') }}</span>
+            </div>
+        </form>
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    auto: [
+                        { model: 'Toyota', engine: '3.2 l' },
+                        { model: 'Honda', engine: false },
+                        { model: 'Volvo', engine: '3.0 l' },
+                        { model: 'Siat', engine: '0.9 l' },
+                        { model: 'BMV', engine: '1.9 l' }
+                    ],
+                },
+                filters: {
+                    convert: function (value, text) {
+                        //В случае если свойство - неопределено, в теле документа возвращает сообщение
+                        if (!value) {
+                            return text;
+                        }
+                        value = value.replace(/\l/g, 'литров');               
+                        return value.toUpperCase();                     
+                    }
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

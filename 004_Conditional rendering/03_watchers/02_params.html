@@ -9,10 +9,34 @@
 </head>
 <body>
 
-    <h1></h1>
+    <h1>Watch свойство</h1>
     
     <div id="app">
-        
+        <table>
+            <thead>
+                <tr>
+                    <th>Модель</th>
+                    <th>Цена</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="tel in telephones">
+                    <td>{{ tel.name }}</td>
+                    <td>{{ tel.price }}</td>
+                    <td>
+                        <button v-on:click="buy(tel)">Купить</button></td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td>Сумма:</td>
+                    <td>{{ total }}$</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
     
    <script>
@@ -21,7 +45,63 @@
 
             var sample = new Vue({
                 el: "#app",
-                
+                data: {
+                    telephones: [
+                        { name: 'Nokia 3', price: 400 },
+                        { name: 'iPhone 5s', price: 500 },
+                        { name: 'iPhone 6s', price: 600 },
+                        { name: "iPhone 7s", price: 1000 },
+                        { name: 'iPhone 8', price: 1800 },
+                        { name: 'iPhone X', price: 2200 },
+                        { name: 'HUAWEY P8', price: 350 },
+                        { name: 'SAMSUNG NOTE 8', price: 750 },
+                        { name: 'SAMSUNG GALAXY S8', price: 1300 },
+
+                    ],
+                    basket: [],
+                    total: 0.00
+                },
+                watch: {
+                    //В наблюдаемых функциях есть возможность задать два параметра
+                    //function(present, past) - способ проверки состояния элемента - до и после изменения
+                    //present - новый параметр(измененный)
+                    //past - старый (предыдущее состояние)
+                    //Vue не сохраняет данные копий или истории для изменённых объектов или массивов. 
+                    basket: function (latest, original) {
+                        this.updateTotal();
+                    },
+                    total: function (latest, original) {
+                        console.log('Предыдущее состояние:');
+                        console.log(original);
+                        console.log('---');
+                        console.log('Теперешнее состояние:');
+                        console.log(latest);
+                        this.calculateSalesTax();
+                    }
+                },
+                //Свойство created позволяет определять поведения, которые будут запущены после создания экземпляра Vue.
+                created: function () {
+                    this.updateTotal()
+                },
+                methods: {
+                    updateTotal: function () {
+                        var length = this.basket.length;
+                        var t = 0;
+                        for (var i = 0; i < length; i++) {
+                            t += this.basket[i].price;
+                        }
+                        this.total = t;
+                    },
+                    //Функция, определяющая стоимость товара вместе с налогами.
+                    calculateSalesTax: function () {
+                        var taxRate = 0.20;             //20% налог.
+                        var grandTotal = (this.total * taxRate) + this.total;
+                        console.log(grandTotal);
+                    },
+                    buy: function (tel) {
+                        this.basket.push(tel);
+                    }
+                }
             })
 
         };

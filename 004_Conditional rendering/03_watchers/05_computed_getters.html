@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../../libs/vue/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js" type="text/javascript"></script>
+</head>
+<body>
+
+    <h1>Вычисляемые свойства</h1>
+    
+    <div id="app">
+        <div>Есть доступ? <span v-bind:style="{padding:'5px',backgroundColor:canConnect? 'green':'red'}">{{ isOnline }} </span></div>
+    </div>
+    
+   <script>
+   
+        window.onload = function() {
+
+            var sample = new Vue({
+                el: "#app",
+                data: {
+                    canConnect: false
+                },
+                //Свойство экземплра Vue, определяющего набор вычисляемых свойств
+                computed: {
+                    //Вычисляемое свойство
+                    isOnline: function () {
+                        return this.canConnect ? 'Да' : 'Нет';
+                    }
+                },
+                created: function () {
+                    //Axios это клиентская библиотека, которая использует промисы по умолчанию,
+                    //а так же работает как на сервере(что делает его подходящим для получения
+                    //данных при рендеринге на сервере), так и на клиенте.
+                    //Использует get, set, post и другие запросы
+                    axios.get('https://jsonplaceholder.typicode.com/posts')
+                        //При успешном получении данных о странице
+                        .then(function (res) {
+                            sample.canConnect = true;
+                            console.log(res)
+                        })
+                        //При получении ошибки
+                        .catch(function (err) {
+                            sample.canConnect = false;
+                            console.log(err)
+                        })
+                }
+            })
+
+        };
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>
