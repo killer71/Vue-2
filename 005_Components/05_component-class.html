@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Vue component class</h1>
+    
+    <div id="app">
+        <my-component></my-component>
+        <!-- Использование привязки к классу с выбором данных -->
+        <my-component2 v-bind:class="{active: isActive}"></my-component2>
+    </div>
+    
+   <script>
+   
+        //Создание первого компонента
+        Vue.component('my-component', {
+            //Использование классов в компонентах
+            template: '<p class="red green">Hi</p>'
+        })
+        //Создание второго компонента
+        Vue.component('my-component2', {
+            template: '<p>Hello paragraph</p>'
+        })
+        var sample = new Vue({
+            el: '#app',
+            data: {
+                isActive: true
+            }
+        })
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+        .green {
+            border: 3px solid green;
+            padding: 5px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .active {
+            font-size: 30px;
+        }
+
+    </style>
+
+</body>
+</html>

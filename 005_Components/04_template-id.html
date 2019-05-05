@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1 class="h1">Подключение шаблона</h1>
+    
+    <div id="app">
+        <my-app></my-app>
+
+        <template id="temp123">
+            <h1>CSS</h1>
+            <h2>HTML</h2>
+            <h3>JS</h3>
+            <h4>Vue</h4>
+            <h5>Jquery</h5>
+            <h6>Angular</h6>
+        </template>
+    </div>
+
+    <script>   
+
+        Vue.component('my-app', function () {
+            template: '#temp123'
+        })
+
+        var sample = new Vue({
+            el: '#app'
+        })
+
+    </script>
+
+    <style scoped>
+
+        .h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>

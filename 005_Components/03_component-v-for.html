@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="../libs/vue/vue.js"></script>
+</head>
+<body>
+
+    <h1>Vue component v-for</h1>
+    
+    <div id="app">
+        <ol>
+            <!-- С помощью директивы v-for перечисляем все элементы списка, и каждому элементу передаем значение-->
+            <!--v-bind привязка опеределяет пользовательский параметр-->
+            <wish-item v-for="item in grocery" v-bind:wish="item"></wish-item>
+        </ol>
+    </div>
+    
+   <script>
+   
+        Vue.component('wish-item', {
+            //props - элемент данного компонента, содержащий все свойства пользователя
+            props: ['wish'],
+            template: '<li>{{ wish.text }}</li>'
+        })
+        var sample = new Vue({
+            el: '#app',
+            data: {
+                grocery: [
+                    { text: 'Овощи' },
+                    { text: 'Сыр' },
+                    { text: 'Мясо' }
+                ]
+            }
+        })
+
+   </script>
+
+    <style scoped>
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>
